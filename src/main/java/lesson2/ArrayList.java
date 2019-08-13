@@ -36,9 +36,16 @@ public class ArrayList<T extends Object & Comparable<? super T>> implements Arra
         data[size++] = elem;
     }
 
+    public void add(int index, T elem) {
+        checkGrow();
+        if (size - index >= 0)
+            System.arraycopy(data, index, data, index + 1, size - index);
+        data[index] = elem;
+    }
+
     private void checkGrow() {
         if (size == data.length)
-            System.arraycopy(data, 0, data, 0, size * 2);
+            data = Arrays.copyOf(data, size * 2);
     }
 
     @Override
