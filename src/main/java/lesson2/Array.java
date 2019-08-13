@@ -33,4 +33,10 @@ public interface Array<T> {
             add(elem);
         }
     }
+
+    void sortBubble();
+
+    void sortSelect();
+
+    void sortInsert();
 }
