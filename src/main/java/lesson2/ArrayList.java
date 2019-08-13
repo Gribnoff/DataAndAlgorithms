@@ -79,6 +79,48 @@ public class ArrayList<T extends Object & Comparable<? super T>> implements Arra
     }
 
     @Override
+    public void sortBubble() {
+        for (int i = 0; i < size - 1; i++) {
+            for (int j = 0; j < size - 1 - i; j++) {
+                if(data[j].compareTo(data[j + 1]) > 0)
+                    swap(j, j + 1);
+            }
+        }
+    }
+
+    private void swap(int index1, int index2) {
+        T buf = data[index1];
+        data[index1] = data[index2];
+        data[index2] = buf;
+    }
+
+    @Override
+    public void sortSelect() {
+        for (int i = 0; i < size - 1; i++) {
+            int minIndex = i;
+            for (int j = i + 1; j < size; j++) {
+                if (data[minIndex].compareTo(data[j]) > 0)
+                    minIndex = j;
+            }
+            swap(i, minIndex);
+        }
+    }
+
+    @Override
+    public void sortInsert() {
+        for (int i = 1; i < size; i++) {
+            T buf = data[i];
+            int index = i;
+
+            while (index > 0 && buf.compareTo(data[index - 1]) < 0) {
+                data[index] = data [index - 1];
+                index--;
+            }
+            data[index] = buf;
+        }
+    }
+
+    @Override
     public void println() {
         Arrays.stream(data).forEach(System.out::println);
     }
