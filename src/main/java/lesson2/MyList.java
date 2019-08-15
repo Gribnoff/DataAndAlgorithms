@@ -4,8 +4,6 @@ import general.MyCollection;
 
 public interface MyList<T> extends MyCollection {
 
-    int DEFAULT_CAPACITY = 16;
-
     T get(int index);
 
     void add(T elem);
