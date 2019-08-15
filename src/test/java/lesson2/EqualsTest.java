@@ -29,8 +29,8 @@ public class EqualsTest<T extends Object & Comparable<? super T>> {
 
     @Test
     public void equalsTest() {
-        ArrayList<T> arrayList1 = new ArrayList<>(array1);
-        ArrayList<T> arrayList2 = new ArrayList<>(array2);
+        MyArrayList<T> arrayList1 = new MyArrayList<>(array1);
+        MyArrayList<T> arrayList2 = new MyArrayList<>(array2);
         Assert.assertEquals(equals, arrayList1.equals(arrayList2));
     }
 }

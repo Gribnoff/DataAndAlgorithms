@@ -31,11 +31,11 @@ public class ContainsAndIndexOfTest<T extends Object & Comparable<? super T>> {
         });
     }
 
-    private ArrayList<T> arrayList;
+    private MyArrayList<T> arrayList;
 
     @Before
     public void init() {
-        arrayList = new ArrayList<>(array);
+        arrayList = new MyArrayList<>(array);
     }
 
     @Test

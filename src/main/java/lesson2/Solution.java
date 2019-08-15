@@ -7,9 +7,9 @@ class Solution {
     private static final int CAPACITY = 1_000_000;
 
     public static void main(String[] args) {
-        ArrayList<Integer> list1 = new ArrayList<>(CAPACITY);
-        ArrayList<Integer> list2 = new ArrayList<>(CAPACITY);
-        ArrayList<Integer> list3 = new ArrayList<>(CAPACITY);
+        MyArrayList<Integer> list1 = new MyArrayList<>(CAPACITY);
+        MyArrayList<Integer> list2 = new MyArrayList<>(CAPACITY);
+        MyArrayList<Integer> list3 = new MyArrayList<>(CAPACITY);
 
         listInit(list1, list2, list3);
 
@@ -20,15 +20,15 @@ class Solution {
         new Thread(timer(list3::sortInsert, "insert sort")).start();
     }
 
-    private static void listInit(Array<Integer>... arrays) {
+    private static void listInit(MyList<Integer>... lists) {
         System.out.println("Lists filling started...");
         Random random = new Random(System.currentTimeMillis());
 
         for (int i = 0; i < CAPACITY; i++) {
             int value = random.nextInt(CAPACITY);
 
-            for (Array<Integer> array : arrays) {
-                array.add(value);
+            for (MyList<Integer> list : lists) {
+                list.add(value);
             }
         }
         System.out.println("Lists are full!");

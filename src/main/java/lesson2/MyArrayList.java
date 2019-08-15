@@ -2,20 +2,20 @@ package lesson2;
 
 import java.util.Arrays;
 
-public class ArrayList<T extends Object & Comparable<? super T>> implements Array<T>{
+public class MyArrayList<T extends Object & Comparable<? super T>> implements MyList<T> {
     private T[] data;
     private int size;
 
     @SuppressWarnings({"unchecked", "ConstantConditions"})
-    public ArrayList(int capacity) {
+    public MyArrayList(int capacity) {
         this.data = (T[]) new Object[capacity];
     }
 
-    public ArrayList() {
+    public MyArrayList() {
         this(DEFAULT_CAPACITY);
     }
 
-    public ArrayList(T[] data) {
+    public MyArrayList(T[] data) {
         this.data = data;
         size = data.length;
     }
@@ -23,6 +23,20 @@ public class ArrayList<T extends Object & Comparable<? super T>> implements Arra
     @Override
     public int size() {
         return size;
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return size == 0;
+    }
+
+    @Override
+    public boolean isFull() {
+        return size == data.length;
+    }
+
+    T[] getArray() {
+        return Arrays.copyOf(data, size);
     }
 
     @Override
@@ -49,20 +63,25 @@ public class ArrayList<T extends Object & Comparable<? super T>> implements Arra
     }
 
     @Override
-    public void remove(T elem) {
+    public boolean remove(T elem) {
         int index = indexOf(elem);
-        if (index != -1)
+        if (index != -1) {
             removeByIndex(index);
+            return true;
+        }
+        return false;
     }
 
     @Override
-    public void removeByIndex(int index) {
+    public boolean removeByIndex(int index) {
         checkIndex(index);
 
         if (size - 1 - index >= 0)
             System.arraycopy(data, index + 1, data, index, size - 1 - index);
 
         data[--size] = null;
+
+        return true;
     }
 
     private void checkIndex(int index) {
@@ -129,15 +148,22 @@ public class ArrayList<T extends Object & Comparable<? super T>> implements Arra
 
     @Override
     public void println() {
-        Arrays.stream(data).forEach(System.out::println);
+        for (int i = 0; i < size; i++) {
+            System.out.println(data[i]);
+        }
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        ArrayList<?> arrayList = (ArrayList<?>) o;
+        MyArrayList<?> arrayList = (MyArrayList<?>) o;
         return size == arrayList.size &&
                 Arrays.equals(data, arrayList.data);
+    }
+
+    @Override
+    public String toString() {
+        return Arrays.toString(data);
     }
 }

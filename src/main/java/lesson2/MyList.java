@@ -1,17 +1,17 @@
 package lesson2;
 
-public interface Array<T> {
+import general.MyCollection;
+
+public interface MyList<T> extends MyCollection {
 
     int DEFAULT_CAPACITY = 16;
-
-    int size();
 
     T get(int index);
 
     void add(T elem);
 
-    void remove(T elem);
-    void removeByIndex(int index);
+    boolean remove(T elem);
+    boolean removeByIndex(int index);
 
     boolean contains(T elem);
     @SuppressWarnings("unchecked")
