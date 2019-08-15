@@ -3,8 +3,8 @@ package lesson2;
 import java.util.Arrays;
 
 public class MyArrayList<T extends Object & Comparable<? super T>> implements MyList<T> {
-    private T[] data;
-    private int size;
+    protected T[] data;
+    protected int size;
 
     @SuppressWarnings({"unchecked", "ConstantConditions"})
     public MyArrayList(int capacity) {
@@ -57,7 +57,7 @@ public class MyArrayList<T extends Object & Comparable<? super T>> implements My
         data[index] = elem;
     }
 
-    private void checkGrow() {
+    protected void checkGrow() {
         if (size == data.length)
             data = Arrays.copyOf(data, size * 2);
     }

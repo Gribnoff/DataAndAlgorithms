@@ -10,6 +10,13 @@ public interface MyList<T> extends MyCollection {
 
     void add(T elem);
 
+    @SuppressWarnings("unchecked")
+    default void addAll(T... elems) {
+        for (T elem : elems) {
+            add(elem);
+        }
+    }
+
     boolean remove(T elem);
     boolean removeByIndex(int index);
 
@@ -26,13 +33,6 @@ public interface MyList<T> extends MyCollection {
     int indexOf(T elem);
 
     void println();
-
-    @SuppressWarnings("unchecked")
-    default void addAll(T... elems) {
-        for (T elem : elems) {
-            add(elem);
-        }
-    }
 
     void sortBubble();
 
