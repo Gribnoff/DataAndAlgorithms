@@ -68,4 +68,9 @@ public class MyArrayQueue<T> implements MyQueue<T> {
     public boolean isFull() {
         return size == data.length;
     }
+
+    @Override
+    public T[] getArray() {
+        return Arrays.copyOf(data, size);
+    }
 }
