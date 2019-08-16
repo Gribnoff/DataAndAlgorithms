@@ -4,14 +4,14 @@ import java.util.Arrays;
 
 public class MyArrayQueue<T> implements MyQueue<T> {
 
-    private static final int DEFAULT_TAIL = 0;
-    private static final int DEFAULT_HEAD = 0;
+    protected static final int DEFAULT_TAIL = 0;
+    protected static final int DEFAULT_HEAD = 0;
 
     protected final T[] data;
     protected int size;
 
-    private int tail;
-    private int head;
+    protected int tail;
+    protected int head;
 
     public MyArrayQueue() {
         this(DEFAULT_CAPACITY);

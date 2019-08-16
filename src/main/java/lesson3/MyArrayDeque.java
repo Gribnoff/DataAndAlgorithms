@@ -2,25 +2,14 @@ package lesson3;
 
 import java.util.Arrays;
 
-public class MyArrayDeque<T> implements MyDeque<T> {
-    private static final int DEFAULT_TAIL = 0;
-    private static final int DEFAULT_HEAD = 0;
-
-    private T[] data;
-    private int size;
-
-    private int tail;
-    private int head;
+public class MyArrayDeque<T> extends MyArrayQueue<T> implements MyDeque<T> {
 
     public MyArrayDeque() {
-        this(DEFAULT_CAPACITY);
+        super();
     }
 
-    @SuppressWarnings("unchecked")
     public MyArrayDeque(int capacity) {
-        data = (T[]) new Object[capacity];
-        head = DEFAULT_HEAD;
-        tail = DEFAULT_TAIL;
+        super(capacity);
     }
 
     @Override
@@ -38,37 +27,12 @@ public class MyArrayDeque<T> implements MyDeque<T> {
 
     @Override
     public boolean offerLast(T elem) {
-        if (isFull())
-            return false;
-
-        if (tail == data.length)
-            tail = DEFAULT_TAIL;
-
-        data[tail++] = elem;
-        size++;
-        return true;
-    }
-
-    @Override
-    public boolean offer(T elem) {
-        return offerLast(elem);
-    }
-
-    @Override
-    public T poll() {
-        return pollFirst();
+        return offer(elem);
     }
 
     @Override
     public T pollFirst() {
-        if (isEmpty())
-            return null;
-
-        if (head == data.length)
-            head = DEFAULT_HEAD;
-
-        size--;
-        return data[head++];
+        return poll();
     }
 
     @Override
@@ -85,17 +49,7 @@ public class MyArrayDeque<T> implements MyDeque<T> {
 
     @Override
     public T peekFirst() {
-        return data[head];
-    }
-
-    @Override
-    public T peek() {
-        return peekFirst();
-    }
-
-    @Override
-    public T[] getArray() {
-        return Arrays.copyOf(data, size);
+        return peek();
     }
 
     @Override
@@ -119,5 +73,10 @@ public class MyArrayDeque<T> implements MyDeque<T> {
     @Override
     public boolean isFull() {
         return size == data.length;
+    }
+
+    @Override
+    public T[] getArray() {
+        return Arrays.copyOf(data, size);
     }
 }
