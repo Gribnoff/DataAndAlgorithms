@@ -2,7 +2,7 @@ package lesson4.linkedlist;
 
 import general.MyCollection;
 
-public interface MyLinkedList<T> extends MyCollection {
+public interface MyLinkedList<T> extends MyCollection, Iterable<T> {
     void addFirst(T elem);
 
     T removeFirst();
@@ -13,14 +13,14 @@ public interface MyLinkedList<T> extends MyCollection {
 
     T getFirst();
 
+    Node<T> getFirstNode();
+
     void print();
 
     @Override
     default boolean isFull() {
         return false;
     }
-
-
 
     class Node<T> {
         protected final T elem;
