@@ -1,5 +1,8 @@
 package lesson4.linkedlist;
 
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+
 public class MySimpleLinkedList<T> implements MyLinkedList<T> {
     protected Node<T> first;
     protected int size;
@@ -64,6 +67,11 @@ public class MySimpleLinkedList<T> implements MyLinkedList<T> {
     }
 
     @Override
+    public Node<T> getFirstNode() {
+        return first;
+    }
+
+    @Override
     public void print() {
         Node<T> current = first;
         while (current != null) {
@@ -80,5 +88,38 @@ public class MySimpleLinkedList<T> implements MyLinkedList<T> {
     @Override
     public boolean isEmpty() {
         return first == null;
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        return new Itr();
+    }
+
+    class Itr implements Iterator<T> {
+        private Node<T> prev;
+        private Node<T> current;
+        private int nextIndex;
+
+        Itr() {
+            current = size > 0 ? getFirstNode() : null;
+            nextIndex = 0;
+            prev = null;
+        }
+
+        @Override
+        public boolean hasNext() {
+            return nextIndex < size;
+        }
+
+        @Override
+        public T next() {
+            if (!hasNext())
+                throw new NoSuchElementException();
+
+            prev = current;
+            current = current.next;
+            nextIndex++;
+            return prev.elem;
+        }
     }
 }
