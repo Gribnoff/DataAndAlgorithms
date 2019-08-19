@@ -4,7 +4,7 @@ public class MyTwoSideLinkedList<T> extends MySimpleLinkedList<T> {
 
     private Node<T> last;
 
-    void addLast(T elem) {
+    public void addLast(T elem) {
         Node<T> node = new Node<>(elem);
 
         if (isEmpty())

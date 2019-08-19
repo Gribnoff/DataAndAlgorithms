@@ -5,7 +5,7 @@ import lesson3.queue.MyQueue;
 public class MyLinkedQueue<T> implements MyQueue<T> {
     private MyTwoSideLinkedList<T> data;
 
-    public MyLinkedQueue(MyTwoSideLinkedList data) {
+    public MyLinkedQueue() {
         this.data = new MyTwoSideLinkedList<>();
     }
 
