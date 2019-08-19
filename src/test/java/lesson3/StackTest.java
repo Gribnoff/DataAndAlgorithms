@@ -1,5 +1,6 @@
 package lesson3;
 
+import lesson3.Stack.MyStack;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

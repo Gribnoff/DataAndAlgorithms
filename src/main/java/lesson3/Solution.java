@@ -1,6 +1,6 @@
 package lesson3;
 
-import java.util.Scanner;
+import lesson3.Stack.MyStack;
 
 public class Solution {
     public static void main(String[] args) {
