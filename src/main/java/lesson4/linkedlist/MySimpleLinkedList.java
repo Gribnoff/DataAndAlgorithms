@@ -73,11 +73,7 @@ public class MySimpleLinkedList<T> implements MyLinkedList<T> {
 
     @Override
     public void print() {
-        Node<T> current = first;
-        while (current != null) {
-            System.out.println(current.elem);
-            current = current.next;
-        }
+        this.forEach(System.out::println);
     }
 
     @Override

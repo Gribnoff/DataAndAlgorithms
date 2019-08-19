@@ -5,7 +5,7 @@ import lesson3.Stack.MyIStack;
 public class MyLinkedStack<T> implements MyIStack<T> {
     private MyLinkedList<T> data;
 
-    public MyLinkedStack(MyLinkedList<T> data) {
+    public MyLinkedStack() {
         this.data = new MySimpleLinkedList<>();
     }
 
