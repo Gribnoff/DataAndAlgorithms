@@ -1,5 +1,7 @@
 package lesson3;
 
+import lesson3.queue.MyPriorityQueue;
+import lesson3.queue.MyQueue;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

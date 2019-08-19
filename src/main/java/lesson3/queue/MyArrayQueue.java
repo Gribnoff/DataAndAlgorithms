@@ -1,4 +1,4 @@
-package lesson3;
+package lesson3.queue;
 
 import java.util.Arrays;
 

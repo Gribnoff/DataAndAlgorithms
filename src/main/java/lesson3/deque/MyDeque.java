@@ -1,4 +1,6 @@
-package lesson3;
+package lesson3.deque;
+
+import lesson3.queue.MyQueue;
 
 public interface MyDeque<T> extends MyQueue<T> {
     boolean offerFirst(T elem);

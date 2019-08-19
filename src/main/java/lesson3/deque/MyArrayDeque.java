@@ -1,4 +1,6 @@
-package lesson3;
+package lesson3.deque;
+
+import lesson3.queue.MyArrayQueue;
 
 import java.util.Arrays;
 

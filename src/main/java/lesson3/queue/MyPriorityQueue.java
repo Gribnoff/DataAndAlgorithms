@@ -1,4 +1,6 @@
-package lesson3;
+package lesson3.queue;
+
+import lesson3.queue.MyArrayQueue;
 
 public class MyPriorityQueue<T extends Object & Comparable<? super T>> extends MyArrayQueue<T> {
 

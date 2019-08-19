@@ -1,5 +1,7 @@
 package lesson3;
 
+import lesson3.deque.MyArrayDeque;
+import lesson3.deque.MyDeque;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
