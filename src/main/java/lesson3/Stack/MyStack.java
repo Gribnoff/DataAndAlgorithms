@@ -1,10 +1,10 @@
-package lesson3;
+package lesson3.Stack;
 
 import general.MyCollection;
 
 import java.util.Arrays;
 
-public class MyStack<T> implements MyCollection {
+public class MyStack<T> implements MyIStack<T> {
 
     private final T[] data;
     private int size;
@@ -18,7 +18,7 @@ public class MyStack<T> implements MyCollection {
         this.data = (T[]) new Object[capacity];
     }
 
-    boolean push(T elem){
+    public boolean push(T elem){
         if (isFull())
             return false;
 
@@ -26,11 +26,11 @@ public class MyStack<T> implements MyCollection {
         return true;
     }
 
-    T pop() {
+    public T pop() {
         return isEmpty() ? null : data[--size];
     }
 
-    T peek() {
+    public T peek() {
         return isEmpty() ? null : data[size - 1];
     }
 
@@ -49,7 +49,7 @@ public class MyStack<T> implements MyCollection {
         return size == data.length;
     }
 
-    T[] getArray() {
+    public T[] getArray() {
         return Arrays.copyOf(data, size);
     }
 }
