@@ -1,32 +1,47 @@
 package lesson4;
 
-import lesson4.linkedlist.MyLinkedList;
 import lesson4.linkedlist.MySimpleLinkedList;
+
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.Iterator;
-import java.util.function.Consumer;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 
 public class ForEachTest {
-    @Test
-    public void test() {
-        MyLinkedList<Integer> list = new MySimpleLinkedList<>();
+    private MySimpleLinkedList<Integer> list;
+    private final ByteArrayOutputStream out = new ByteArrayOutputStream();
+
+    @Before
+    public void prepare() {
+        list = new MySimpleLinkedList<>();
         for (int i = 0; i < 5; i++) {
             list.addFirst(i);
         }
-        list.forEach(System.out::println);
+
+        System.setOut(new PrintStream(out));
+    }
+
+    @After
+    public void close() {
+        System.setOut(System.out);
+    }
+
+    @Test
+    public void test() {
+        list.forEach(System.out::print);
+
+        Assert.assertEquals("43210", out.toString());
     }
 
     @Test
     public void test1() {
-        MyLinkedList<Integer> list = new MySimpleLinkedList<>();
-        for (int i = 0; i < 5; i++) {
-            list.addFirst(i);
-        }
         for (Integer integer : list) {
-            System.out.println(integer);
+            System.out.print(integer);
         }
+
+        Assert.assertEquals("43210", out.toString());
     }
 }
