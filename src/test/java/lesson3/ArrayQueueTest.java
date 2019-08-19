@@ -1,5 +1,6 @@
 package lesson3;
 
+import lesson3.deque.MyArrayDeque;
 import lesson3.queue.MyArrayQueue;
 import lesson3.queue.MyQueue;
 import org.junit.Assert;
@@ -7,7 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class ArrayQueueTest {
-    private MyQueue<Integer> queue;
+    private MyArrayQueue<Integer> queue;
 
     @Before
     public void prepare() {

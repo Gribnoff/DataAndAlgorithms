@@ -7,7 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class ArrayDequeTest {
-    private MyDeque<Integer> deque;
+    private MyArrayDeque<Integer> deque;
 
     @Before
     public void prepare() {

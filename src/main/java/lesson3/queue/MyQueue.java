@@ -20,6 +20,4 @@ public interface MyQueue<T> extends MyCollection {
     T poll();
 
     T peek();
-
-    T[] getArray(); //для тестирования
 }
