@@ -69,7 +69,7 @@ public class MyArrayQueue<T> implements MyQueue<T> {
         return size == data.length;
     }
 
-    @Override
+    //для тестирования
     public T[] getArray() {
         return Arrays.copyOf(data, size);
     }

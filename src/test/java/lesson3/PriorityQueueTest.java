@@ -7,7 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class PriorityQueueTest {
-    private MyQueue<Integer> queue;
+    private MyPriorityQueue<Integer> queue;
 
     @Before
     public void prepare() {
