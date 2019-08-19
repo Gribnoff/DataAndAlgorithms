@@ -97,7 +97,7 @@ public class MySimpleLinkedList<T> implements MyLinkedList<T> {
         private int nextIndex;
 
         Itr() {
-            current = size > 0 ? getFirstNode() : null;
+            current = size > 0 ? first : null;
             nextIndex = 0;
             prev = null;
         }
