@@ -2,8 +2,6 @@ package lesson4.linkedlist;
 
 import general.MyCollection;
 
-import java.util.Iterator;
-
 public interface MyFullLinkedList<T> extends MyCollection, Iterable<T> {
     void addFirst(T elem);
     void addLast(T elem);
