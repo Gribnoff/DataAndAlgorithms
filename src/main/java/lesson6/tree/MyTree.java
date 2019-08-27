@@ -23,4 +23,5 @@ public interface MyTree<T> extends MyCollection {
 
     void traverse(TraverseMode mode);
 
+    int depth();
 }
