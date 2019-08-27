@@ -176,7 +176,18 @@ public class MyTreeSet<T extends Comparable<? super T>> implements MyTree<T> {
 
     @Override
     public boolean isBalanced() {
-        return false;
+        return isBalanced(root);
+    }
+
+    private boolean isBalanced(Node node) {
+        return (node == null) ||
+                isBalanced(node.getLeft()) &&
+                        isBalanced(node.getRight()) &&
+                        Math.abs(depth(node.getLeft()) - depth(node.getRight())) <= 1;
+    }
+
+    private int depth(Node node) {
+        return node == null ? 0 : 1 + Math.max(depth(node.getLeft()), depth(node.getRight()));
     }
 
     @Override

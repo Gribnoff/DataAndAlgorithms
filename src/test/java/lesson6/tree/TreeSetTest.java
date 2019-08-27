@@ -57,4 +57,18 @@ public class TreeSetTest {
         Assert.assertTrue(tree.find(32));
         Assert.assertTrue(tree.find(45));
     }
+
+    @Test
+    public void balanceTest() {
+        Assert.assertFalse(tree.isBalanced());
+        tree.add(62);
+        tree.add(61);
+        tree.add(63);
+        tree.add(80);
+        tree.add(75);
+        tree.add(90);
+        tree.add(85);
+        tree.add(22);
+        Assert.assertTrue(tree.isBalanced());
+    }
 }
