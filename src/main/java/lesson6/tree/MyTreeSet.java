@@ -186,6 +186,10 @@ public class MyTreeSet<T extends Comparable<? super T>> implements MyTree<T> {
                         Math.abs(depth(node.getLeft()) - depth(node.getRight())) <= 1;
     }
 
+    public int depth() {
+        return depth(root);
+    }
+
     private int depth(Node node) {
         return node == null ? 0 : 1 + Math.max(depth(node.getLeft()), depth(node.getRight()));
     }
