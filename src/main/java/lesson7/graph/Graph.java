@@ -4,13 +4,13 @@ import java.util.*;
 
 public class Graph {
     private final List<Vertex> vertexList;
-    private final boolean[][] adjMat;
+    private final int[][] adjMat;
 
     private int size;
 
     public Graph(int maxVertexCount) {
         this.vertexList = new ArrayList<>();
-        this.adjMat = new boolean[maxVertexCount][maxVertexCount];
+        this.adjMat = new int[maxVertexCount][maxVertexCount];
     }
 
     public int getSize() {
@@ -36,15 +36,24 @@ public class Graph {
         }
     }
 
+
     public void addEdge(String label, String label2) {
+        addEdge(label, label2, 1);
+    }
+
+    public void addEdge(String label, String label2, int weight) {
         int index = indexOf(label);
         int index2 = indexOf(label2);
 
         if (index == -1 || index2 == -1)
             throw new IllegalArgumentException("Invalid vertex label");
 
-        adjMat[index][index2] = true;
-        adjMat[index2][index] = true;
+        adjMat[index][index2] = weight;
+        adjMat[index2][index] = weight;
+    }
+
+    public int getWeight(String label, String label2) {
+        return adjMat[indexOf(label)][indexOf(label2)];
     }
 
     private int indexOf(String label) {
@@ -61,7 +70,7 @@ public class Graph {
         for (int i = 0; i < size; i++) {
             System.out.print(vertexList.get(i));
             for (int j = 0; j < size; j++) {
-                if (adjMat[i][j])
+                if (adjMat[i][j] != 0)
                     System.out.print(" -> " + vertexList.get(j));
             }
             System.out.println();
@@ -135,19 +144,74 @@ public class Graph {
     private Vertex getNextUnvisitedVertex(Vertex currentVertex) {
         int currentIndex = vertexList.indexOf(currentVertex);
         for (int i = 0; i < size; i++) {
-            if (adjMat[currentIndex][i] && !vertexList.get(i).isVisited())
+            if (adjMat[currentIndex][i] != 0 && !vertexList.get(i).isVisited())
                 return vertexList.get(i);
         }
 
         return null;
     }
 
-    private static class Vertex {
+    public void bestRoute(String source, String target) {
+        int index1 = indexOf(source);
+        int index2 = indexOf(target);
+        if (index1 == -1 || index2 == -1)
+            throw new IllegalArgumentException("Invalid vertex label");
+
+        for (Vertex v : vertexList) {
+            v.setDist(Integer.MAX_VALUE);
+            v.setPrev(null);
+        }
+        Vertex targetVertex = vertexList.get(index2);
+
+        Vertex vertex = vertexList.get(index1);
+        vertex.setDist(0);
+
+        Queue<Vertex> queue = new PriorityQueue<>();
+        queue.add(vertex);
+
+        while (!queue.isEmpty()) {
+            Vertex prev = queue.poll();
+            int index = indexOf(prev.getLabel());
+            for (int i = 0; i < adjMat[index].length; i++) {
+                if (adjMat[index][i] > 0) {
+                    vertex = vertexList.get(i);
+                    int dist = getWeight(prev.getLabel(), vertex.getLabel());
+                    int distToVertex = prev.dist + dist;
+
+                    if (distToVertex < vertex.dist) {
+                        queue.remove(vertex);
+                        vertex.setDist(distToVertex);
+                        vertex.setPrev(prev);
+                        queue.add(vertex);
+                    }
+                }
+            }
+        }
+
+        List<Vertex> route = new ArrayList<>();
+        for (Vertex v = targetVertex; v != null; v = v.prev)
+            route.add(v);
+
+        Collections.reverse(route);
+
+        System.out.printf("Best route from %s to %s: ", source, target);
+        for (Vertex v : route) {
+            System.out.print(v.getLabel() + " -> ");
+        }
+
+        System.out.println("\b\b\b\b\nDistance: " + targetVertex.getDist());
+
+    }
+
+    private static class Vertex implements Comparable<Vertex>{
         private final String label;
         private boolean visited;
+        private int dist;
+        private Vertex prev;
 
         Vertex(String label) {
             this.label = label;
+            this.dist = Integer.MAX_VALUE;
         }
 
         String getLabel() {
@@ -162,9 +226,30 @@ public class Graph {
             this.visited = visited;
         }
 
+        public int getDist() {
+            return dist;
+        }
+
+        public void setDist(int dist) {
+            this.dist = dist;
+        }
+
+        public Vertex getPrev() {
+            return prev;
+        }
+
+        public void setPrev(Vertex prev) {
+            this.prev = prev;
+        }
+
         @Override
         public String toString() {
             return String.format("(%s)", label);
+        }
+
+        @Override
+        public int compareTo(Vertex another) {
+            return Integer.compare(dist, another.dist);
         }
     }
 }
