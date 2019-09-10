@@ -140,7 +140,7 @@ public class MyHashTable<K, V> implements MyHash<K, V>{
 
     @Override
     public boolean isEmpty() {
-        return size != 0;
+        return size == 0;
     }
 
     @Override
