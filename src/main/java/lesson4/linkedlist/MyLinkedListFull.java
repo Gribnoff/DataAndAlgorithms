@@ -38,7 +38,8 @@ public class MyLinkedListFull<T> implements MyFullLinkedList<T> {
 
         T elem = first.elem;
         first = first.next;
-        first.prev = null;
+        if (first != null)
+            first.prev = null;
 
         size--;
         return elem;
@@ -71,10 +72,12 @@ public class MyLinkedListFull<T> implements MyFullLinkedList<T> {
             return false;
         else if (current == first) {
             first = current.next;
-            first.prev = null;
+            if (first != null)
+                first.prev = null;
         } else if (current == last) {
             last = current.prev;
-            last.next = null;
+            if (last != null)
+                last.next = null;
         } else {
             current.next.prev = current.prev;
             current.prev.next = current.next;

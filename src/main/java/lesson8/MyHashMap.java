@@ -52,7 +52,7 @@ public class MyHashMap<K, V> implements MyHash<K, V> {
         this.data = new MyLinkedListFull[maxSize];
     }
 
-    private int hash(K key) {
+    protected int hash(K key) {
         return key.hashCode() % data.length;
     }
 
