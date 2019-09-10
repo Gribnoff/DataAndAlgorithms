@@ -44,18 +44,18 @@ public class HashMapTest {
                 "1 = [Node{key=Orange, value=150}] [Node{key=Banana, value=100}] [Node{key=Potato, value=67}]\r\n" +
                 "2 = [Node{key=Milk, value=120}]\r\n" +
                 "3 = [null]\r\n" +
-                "4 = [null]\r\n" +
-                "5 = [null]\r\n" +
-                "6 = [null]\r\n" +
-                "7 = [null]\r\n" +
-                "8 = [null]\r\n" +
-                "9 = [null]\r\n";
+                "4 = [null]\r\n";
         Assert.assertEquals(expected, out.toString());
     }
 
     @Test
     public void removeTest() {
-        map.remove(banana);
+        Assert.assertEquals(100, (int)map.remove(banana));
         Assert.assertFalse(map.contains(banana));
+    }
+
+    @Test
+    public void getTest() {
+        Assert.assertEquals(67, (int)map.get(potato));
     }
 }
