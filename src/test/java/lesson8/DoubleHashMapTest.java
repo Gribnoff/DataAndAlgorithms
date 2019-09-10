@@ -50,7 +50,12 @@ public class DoubleHashMapTest {
 
     @Test
     public void removeTest() {
-        map.remove(banana);
+        Assert.assertEquals(100, (int)map.remove(banana));
         Assert.assertFalse(map.contains(banana));
+    }
+
+    @Test
+    public void getTest() {
+        Assert.assertEquals(67, (int)map.get(potato));
     }
 }
