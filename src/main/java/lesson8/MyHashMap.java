@@ -78,8 +78,6 @@ public class MyHashMap<K, V> implements MyHash<K, V> {
     @Override
     public V get(K key) {
         int index = hash(key);
-        if (index == -1)
-            return null;
 
         MyLinkedListFull<Node<K, V>> list = data[index];
 
@@ -101,8 +99,6 @@ public class MyHashMap<K, V> implements MyHash<K, V> {
     @Override
     public V remove(K key) {
         int index = hash(key);
-        if (index == -1)
-            return null;
 
         MyLinkedListFull<Node<K, V>> list = data[index];
         V result = null;
